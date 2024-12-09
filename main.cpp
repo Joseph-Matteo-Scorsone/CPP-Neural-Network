@@ -72,11 +72,13 @@ class NeuralNetwork{
             for (int i = 0; i < hiddenLayerSize; i++) {
                 output += current[i] * weights[numHiddenLayers][0][i];
             }
-            float yPred = Sigmoid(output);
+            //float yPred = Sigmoid(output);
             
             // Calculate error
-            float error = MSE(target, yPred);
-            float d_error = MSEDeriv(target, yPred);
+            //float error = MSE(target, yPred);
+            //float d_error = MSEDeriv(target, yPred);
+            float error = MSE(target, output);
+            float d_error = MSEDeriv(target, output);
 
             // Backpropagation for the output neuron
             float output_delta = d_error * SigmoidDeriv(output);
@@ -96,7 +98,7 @@ class NeuralNetwork{
                     for (int k = 0; k < weights[layer + 1].size(); k++) {
                         error += delta[k] * weights[layer + 1][k][j];
                     }
-                    float delta_j = error * ReLUDeriv(layer_outputs[layer + 1][j]);  // Use ReLU derivative here
+                    float delta_j = error * ReLUDeriv(layer_outputs[layer + 1][j]);
                     nextDelta[j] = delta_j;
 
                     // Update weights and biases for this neuron
