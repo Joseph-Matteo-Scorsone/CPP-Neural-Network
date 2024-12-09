@@ -81,7 +81,7 @@ class NeuralNetwork{
             float d_error = MSEDeriv(target, output);
 
             // Backpropagation for the output neuron
-            float output_delta = d_error * SigmoidDeriv(output);
+            float output_delta = d_error * ReLUDeriv(output);
 
             // Update weights and biases for the output neuron
             for (int i = 0; i < hiddenLayerSize; i++) {
